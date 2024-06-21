@@ -15,12 +15,12 @@ int main(){
     Player player; // Create the player x, y.
 
     // Maze creation and handling.
-    int width = 10;
-    int height = 10;
+    int width = 5;
+    int height = 5;
     Maze mazeGenerator(width, height);
     MapManager mapManager(width, height);
 
-    // Debugging.
+    // Debugging, set maze.
     mapManager.DEBUG_SetMaze(mazeGenerator);
     mazeGenerator.printMaze();
     mapManager.DEBUG_PrintValidMovementOptions(player.x, player.y);
@@ -28,9 +28,12 @@ int main(){
     // For player movement and game loop.
     string userInput;
     bool validInput;
-    string playerFacing = "East"; // Default East.
+    string playerFacing = "South"; // Default South.
     vector<string> adjustedOptions;
     vector<string> movementOptions = mapManager.validMovementOptions(player.x,player.y);
+
+    // Opening.
+    cout << "You have just entered a dark hedge maze. There is no going back." << endl;
 
     // Print begining options.
     adjustDirection(movementOptions, adjustedOptions, playerFacing);
@@ -50,9 +53,9 @@ int main(){
             if (userInput == adjustedOptions.at(i)){
 
                 validInput = true; // Flag.
-                
-                if (movementOptions.at(i) == "Norht"){
-                        player.y = player.y + 1;
+
+                if (movementOptions.at(i) == "North"){
+                        player.y -= 1;
                         playerFacing = "North";
                         cout << "You go " << adjustedOptions.at(i) << "." << endl;
                }
@@ -65,7 +68,7 @@ int main(){
                 }
 
                 else if (movementOptions.at(i) == "South"){
-                    player.y -= 1;
+                    player.y += 1;
                     playerFacing = "South";
                     cout << "You go " << adjustedOptions.at(i) << "." << endl;
                     break;
@@ -89,15 +92,16 @@ int main(){
         // Next move.
         else {
 
+            // Check for the end of maze.
+            if (mapManager.isEnd(player.x, player.y)){
+                // End text.
+                cout << "You step out of the maze into sunlight. You made it out." << endl;
+                break;
+            }
+
             // Reset vectors.
             adjustedOptions.clear();
             movementOptions = mapManager.validMovementOptions(player.x,player.y);
-
-            // DEBUGGING
-            cout << "player x: " << player.x << ", player y: " << player.y << endl;
-            //cout << "player facing: " << playerFacing << endl;
-            cout << "Movement options: " << endl;
-            mapManager.DEBUG_PrintValidMovementOptions(player.x, player.y);
 
             // Print updated options.
             adjustDirection(movementOptions, adjustedOptions, playerFacing);
@@ -109,5 +113,6 @@ int main(){
         cin >> userInput;
     }
 
+    cout << "Thanks for playing." << endl;
     return 0;
 }

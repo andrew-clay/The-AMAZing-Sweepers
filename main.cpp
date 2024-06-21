@@ -20,10 +20,8 @@ int main(){
     Maze mazeGenerator(width, height);
     MapManager mapManager(width, height);
 
-    // Debugging, set maze.
+    // Set maze.
     mapManager.DEBUG_SetMaze(mazeGenerator);
-    mazeGenerator.printMaze();
-    mapManager.DEBUG_PrintValidMovementOptions(player.x, player.y);
 
     // For player movement and game loop.
     string userInput;

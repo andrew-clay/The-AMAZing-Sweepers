@@ -10,25 +10,13 @@
 const char WALL_CHAR = 'X';
 const char PATH_CHAR = ' ';
 
-// Some things of note for group:
-// I think we should have had a 2d array of cell objects, instead of having a 2d array of chars.
-// I believe this would have made it easier to implement the maze generation algorithm, as well as made the logic easier for maze navigation.
-
 // --------------------------------------------
 // Andrew Clay
 // June 13, 2024
 // 
 // Functions and classes to generate a maze.
 // The generateMaze(width, height) function will return a 2D array of chars, where X is a wall and o is an open space.
-// 
-// Comments to be deleted on final version:
-// The maze generation algorithm is an attempt at eller's algorithm, but is not a perfect implementation, i dont think. I need to work on it way more.
-// The maze in its current state, isnt very..maze-y, and I need to work on it way more, however I have a footholding and a basic start.
-// Also there may be mistakes in the code, and the algorithm may not be perfect, but I am working on it.
-// Also because there could be mistakes in the code, its possible that the maze may accidentally generate a maze that is impossible to solve.
-// important resources:
-// https://weblog.jamisbuck.org/2010/12/29/maze-generation-eller-s-algorithm
-// http://www.neocomputer.org/projects/eller.html
+// Uses Eller's algorithm
 // --------------------------------------------
 
 // Example usage:

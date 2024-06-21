@@ -3,6 +3,7 @@
 
 /* Zaina Williams - zjwilliams1@dmacc.edu
  * June 11, 2024
+ * June 20, 2024 (minor fix)
  *
  * Functions for orientating and printing movement options for maze navigation.
 */
@@ -85,7 +86,7 @@ void printOptions(vector<string>& adjustedOptions){
     }
 
     if (adjustedOptions.size() == 1){
-        cout << "You've reached a dead end. You must go back.";
+        cout << "There is only one path. You must go " << adjustedOptions.at(0) << "." << endl;
     }
     else {
         // Output path options for more than one path.
